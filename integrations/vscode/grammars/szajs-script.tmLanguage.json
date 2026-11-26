@@ -1,0 +1,85 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Szajs Script",
+  "scopeName": "source.szajs",
+  "fileTypes": ["szajs", "sx"],
+  "firstLineMatch": "^#!.*\\bszajs\\b",
+  "patterns": [
+    { "match": "\\A#!.*$", "name": "comment.line.shebang.szajs" },
+    { "include": "#metadata" },
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#function-definition" },
+    { "include": "#keywords" },
+    { "include": "#numbers" },
+    { "include": "#calls" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "metadata": {
+      "match": "^(#@)\\s*([\\p{L}_][\\p{L}\\p{N}_-]*)(:)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "punctuation.definition.comment.szajs" },
+        "2": { "name": "storage.type.annotation.szajs" },
+        "3": { "name": "punctuation.separator.key-value.szajs" },
+        "4": { "name": "string.unquoted.metadata.szajs" }
+      },
+      "name": "comment.line.metadata.szajs"
+    },
+    "comments": {
+      "patterns": [
+        { "begin": "#\\[", "end": "\\]#", "name": "comment.block.szajs" },
+        { "match": "#.*$", "name": "comment.line.number-sign.szajs" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.szajs",
+          "patterns": [
+            { "match": "\\\\.", "name": "constant.character.escape.szajs" },
+            {
+              "begin": "\\$\\{",
+              "end": "\\}",
+              "beginCaptures": { "0": { "name": "punctuation.section.interpolation.begin.szajs" } },
+              "endCaptures": { "0": { "name": "punctuation.section.interpolation.end.szajs" } },
+              "name": "meta.interpolation.szajs",
+              "patterns": [ { "include": "$self" } ]
+            }
+          ]
+        },
+        { "begin": "'", "end": "'", "name": "string.quoted.single.szajs" }
+      ]
+    },
+    "function-definition": {
+      "match": "\\b(robota)\\s+([\\p{L}_][\\p{L}\\p{N}_]*)",
+      "captures": {
+        "1": { "name": "storage.type.function.szajs" },
+        "2": { "name": "entity.name.function.szajs" }
+      }
+    },
+    "keywords": {
+      "patterns": [
+        { "match": "(?<![\\p{L}\\p{N}_])(jeśli|jesli|albo|dopóki|dopoki|dla|w|koniec|daj|przerwij|dalej|spróbuj|sprobuj|złap|zlap|wywal)(?![\\p{L}\\p{N}_])", "name": "keyword.control.szajs" },
+        { "match": "(?<![\\p{L}\\p{N}_])(niech|stała|stala)(?![\\p{L}\\p{N}_])", "name": "storage.modifier.szajs" },
+        { "match": "(?<![\\p{L}\\p{N}_])(i|lub|nie)(?![\\p{L}\\p{N}_])", "name": "keyword.operator.logical.szajs" },
+        { "match": "(?<![\\p{L}\\p{N}_])(prawda|fałsz|falsz|nic)(?![\\p{L}\\p{N}_])", "name": "constant.language.szajs" },
+        { "match": "(?<![\\p{L}\\p{N}_])(wypisz|wczytaj|lista|kopiuj|srodowisko|środowisko)(?=\\s*\\()", "name": "support.function.builtin.szajs" }
+      ]
+    },
+    "numbers": {
+      "match": "\\b\\d+(?:\\.\\d+)?\\b",
+      "name": "constant.numeric.szajs"
+    },
+    "calls": {
+      "match": "([\\p{L}_][\\p{L}\\p{N}_]*)\\s*(?=\\()",
+      "captures": { "1": { "name": "entity.name.function.call.szajs" } }
+    },
+    "operators": {
+      "match": "==|!=|<=|>=|[-+*/%<>=]",
+      "name": "keyword.operator.szajs"
+    }
+  }
+}

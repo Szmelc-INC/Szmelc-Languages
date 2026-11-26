@@ -1,0 +1,117 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Vibe-C",
+  "scopeName": "source.vibe-c",
+  "fileTypes": ["vc", "vic", "vice"],
+  "patterns": [
+    { "include": "#metadata" },
+    { "include": "#prompt" },
+    { "include": "#comments" },
+    { "include": "#preprocessor" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#numbers" },
+    { "include": "#functions" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "metadata": {
+      "patterns": [
+        {
+          "match": "^(//!)\\s*(vibe-c)\\s+([0-9][0-9.]*)",
+          "captures": {
+            "1": { "name": "punctuation.definition.comment.vibe-c" },
+            "2": { "name": "keyword.other.signature.vibe-c" },
+            "3": { "name": "constant.numeric.version.vibe-c" }
+          },
+          "name": "comment.line.signature.vibe-c"
+        },
+        {
+          "match": "^(//!)\\s*(@[A-Za-z_][\\w-]*)\\s*(.*)$",
+          "captures": {
+            "1": { "name": "punctuation.definition.comment.vibe-c" },
+            "2": { "name": "storage.type.annotation.vibe-c" },
+            "3": { "name": "string.unquoted.metadata.vibe-c" }
+          },
+          "name": "comment.line.metadata.vibe-c"
+        }
+      ]
+    },
+    "prompt": {
+      "begin": "/\\*~",
+      "end": "~\\*/",
+      "name": "comment.block.prompt.vibe-c",
+      "patterns": [
+        { "match": "\\b(prompt|model|temperature)(:)", "captures": { "1": { "name": "keyword.other.prompt.vibe-c" }, "2": { "name": "punctuation.separator.key-value.vibe-c" } } }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        { "begin": "/\\*", "end": "\\*/", "name": "comment.block.vibe-c" },
+        { "match": "//.*$", "name": "comment.line.double-slash.vibe-c" }
+      ]
+    },
+    "preprocessor": {
+      "patterns": [
+        {
+          "match": "^\\s*(#)\\s*(include)\\s*(<[^>]*>|\"[^\"]*\")",
+          "captures": {
+            "1": { "name": "punctuation.definition.directive.vibe-c" },
+            "2": { "name": "keyword.control.directive.include.vibe-c" },
+            "3": { "name": "string.quoted.other.include.vibe-c" }
+          }
+        },
+        {
+          "match": "^\\s*(#)\\s*(vibe)\\b\\s*(\\w*)",
+          "captures": {
+            "1": { "name": "punctuation.definition.directive.vibe-c" },
+            "2": { "name": "keyword.control.directive.vibe.vibe-c" },
+            "3": { "name": "entity.name.tag.pragma.vibe-c" }
+          }
+        },
+        {
+          "match": "^\\s*(#)\\s*(define|undef|if|ifdef|ifndef|elif|else|endif|pragma|error|warning|line)\\b",
+          "captures": {
+            "1": { "name": "punctuation.definition.directive.vibe-c" },
+            "2": { "name": "keyword.control.directive.vibe-c" }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.vibe-c",
+          "patterns": [
+            { "match": "\\\\.", "name": "constant.character.escape.vibe-c" },
+            { "match": "%[-+ #0]*\\d*(?:\\.\\d+)?[hlLzjt]*[diouxXeEfgGcspn%]", "name": "constant.other.placeholder.vibe-c" }
+          ]
+        },
+        { "match": "'(?:\\\\.|[^'\\\\])'", "name": "string.quoted.single.vibe-c" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "match": "\\b(yolo|nocap|vibecheck|bruh)\\b", "name": "keyword.control.vibe.vibe-c" },
+        { "match": "\\b(send|return|if|else|for|while|do|switch|case|default|break|continue|goto)\\b", "name": "keyword.control.vibe-c" },
+        { "match": "\\b(vibe|chill|sus|lowkey|highkey|const|volatile|static|extern|inline|register|restrict|typedef|struct|union|enum|sizeof)\\b", "name": "storage.modifier.vibe-c" },
+        { "match": "\\b(void|char|short|int|long|float|double|signed|unsigned|bool|size_t|ssize_t|[a-z_][a-z0-9_]*_t)\\b", "name": "storage.type.vibe-c" },
+        { "match": "\\b(fr|cap|NULL|true|false)\\b", "name": "constant.language.vibe-c" }
+      ]
+    },
+    "numbers": {
+      "match": "\\b(?:0[xX][0-9A-Fa-f]+|0[bB][01]+|\\d+(?:\\.\\d+)?(?:[eE][-+]?\\d+)?)[uUlLfF]*\\b",
+      "name": "constant.numeric.vibe-c"
+    },
+    "functions": {
+      "match": "\\b([A-Za-z_]\\w*)\\s*(?=\\()",
+      "captures": { "1": { "name": "entity.name.function.vibe-c" } }
+    },
+    "operators": {
+      "match": "->|\\+\\+|--|<<=?|>>=?|[-+*/%&|^!=<>]=?|&&|\\|\\||[?:~]",
+      "name": "keyword.operator.vibe-c"
+    }
+  }
+}

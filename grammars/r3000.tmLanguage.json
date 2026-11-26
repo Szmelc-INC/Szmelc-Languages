@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "R3000",
+  "scopeName": "source.r3000",
+  "fileTypes": ["r3k", "r3000", "rzk"],
+  "firstLineMatch": "^(?:#!.*\\b(?:r3k|rozkurwator)\\b|;;\\s*R3000\\b)",
+  "patterns": [
+    { "match": "\\A#!.*$", "name": "comment.line.shebang.r3000" },
+    { "include": "#comments" },
+    { "include": "#panic" },
+    { "include": "#strings" },
+    { "include": "#definition" },
+    { "include": "#directives" },
+    { "include": "#keywords" },
+    { "include": "#pipeline" },
+    { "include": "#named-arg" },
+    { "include": "#numbers" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "^(;;)\\s*(R3000)\\b(.*)$",
+          "captures": {
+            "1": { "name": "punctuation.definition.comment.r3000" },
+            "2": { "name": "keyword.other.signature.r3000" }
+          },
+          "name": "comment.line.signature.r3000"
+        },
+        {
+          "match": "(;+).*$",
+          "name": "comment.line.semicolon.r3000",
+          "captures": { "1": { "name": "punctuation.definition.comment.r3000" } }
+        }
+      ]
+    },
+    "panic": {
+      "match": "!!!",
+      "name": "keyword.control.panic.r3000"
+    },
+    "strings": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.r3000",
+      "patterns": [
+        { "match": "\\\\.", "name": "constant.character.escape.r3000" },
+        { "match": "\\$\\{[^}]*\\}", "name": "meta.interpolation.r3000" }
+      ]
+    },
+    "definition": {
+      "match": "\\b(def)\\s+([\\p{L}_][\\p{L}\\p{N}_]*)",
+      "captures": {
+        "1": { "name": "storage.type.function.r3000" },
+        "2": { "name": "entity.name.function.r3000" }
+      }
+    },
+    "directives": {
+      "match": "^\\s*(moc|tryb)\\b",
+      "name": "keyword.other.directive.r3000"
+    },
+    "keywords": {
+      "patterns": [
+        { "match": "\\b(petla|od|do|jesli|inaczej|zwroc)\\b", "name": "keyword.control.r3000" },
+        { "match": "\\b(prawda|falsz|nic)\\b", "name": "constant.language.r3000" }
+      ]
+    },
+    "pipeline": {
+      "match": "\\b(rozwal|tnij|mieszaj|zgniec|wypluj|wypisz|odwroc|powiel|filtruj|mapuj|los)\\b",
+      "name": "support.function.wrecker.r3000"
+    },
+    "named-arg": {
+      "match": "\\b([\\p{L}_][\\p{L}\\p{N}_]*)(:)(?=\\s)",
+      "captures": {
+        "1": { "name": "variable.parameter.named.r3000" },
+        "2": { "name": "punctuation.separator.key-value.r3000" }
+      }
+    },
+    "numbers": {
+      "match": "\\b\\d+(?:\\.\\d+)?\\b",
+      "name": "constant.numeric.r3000"
+    },
+    "operators": {
+      "match": "\\|>|=>|==|!=|<=|>=|[-+*/%<>=]",
+      "name": "keyword.operator.r3000"
+    }
+  }
+}

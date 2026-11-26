@@ -1,0 +1,76 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Machen",
+  "scopeName": "source.machen",
+  "fileTypes": ["machen", "mach", "Machenfile", "machenfile", "Machendatei"],
+  "firstLineMatch": "^#!\\s*machen\\b",
+  "patterns": [
+    { "include": "#signature" },
+    { "include": "#comments" },
+    { "include": "#target" },
+    { "include": "#assignment" },
+    { "include": "#keywords" },
+    { "include": "#strings" },
+    { "include": "#variables" },
+    { "include": "#functions" }
+  ],
+  "repository": {
+    "signature": {
+      "match": "^(#!)\\s*(machen)\\s+([0-9][0-9.]*)",
+      "captures": {
+        "1": { "name": "punctuation.definition.comment.machen" },
+        "2": { "name": "keyword.other.signature.machen" },
+        "3": { "name": "constant.numeric.version.machen" }
+      },
+      "name": "comment.line.signature.machen"
+    },
+    "comments": {
+      "match": "#.*$",
+      "name": "comment.line.number-sign.machen"
+    },
+    "target": {
+      "begin": "^(ziel)\\s+([\\w.-]+)(!)?\\s*(:)",
+      "beginCaptures": {
+        "1": { "name": "storage.type.target.machen" },
+        "2": { "name": "entity.name.function.target.machen" },
+        "3": { "name": "storage.modifier.phony.machen" },
+        "4": { "name": "punctuation.separator.key-value.machen" }
+      },
+      "end": "$",
+      "name": "meta.target.machen",
+      "patterns": [ { "include": "#variables" }, { "include": "#functions" }, { "include": "#strings" }, { "match": "[\\w./*-]+", "name": "entity.name.function.dependency.machen" } ]
+    },
+    "assignment": {
+      "match": "^\\s*(setze)\\s+([A-Za-z_]\\w*)\\s*(\\?=|\\+=|=)",
+      "captures": {
+        "1": { "name": "storage.modifier.machen" },
+        "2": { "name": "variable.other.definition.machen" },
+        "3": { "name": "keyword.operator.assignment.machen" }
+      }
+    },
+    "keywords": {
+      "patterns": [
+        { "match": "^\\s*(mach|sag|fehler)\\b", "name": "keyword.control.command.machen" },
+        { "match": "\\b(wenn|sonst|ende|fuer|für|in)\\b", "name": "keyword.control.machen" },
+        { "match": "^\\s*(importiere|standard)\\b", "name": "keyword.other.machen" }
+      ]
+    },
+    "strings": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.machen",
+      "patterns": [ { "match": "\\\\.", "name": "constant.character.escape.machen" }, { "include": "#variables" } ]
+    },
+    "variables": {
+      "patterns": [
+        { "match": "\\$\\{[A-Za-z_]\\w*\\}", "name": "variable.other.machen" },
+        { "match": "\\$[A-Za-z_]\\w*", "name": "variable.other.machen" },
+        { "match": "\\$[@<^]", "name": "variable.language.automatic.machen" }
+      ]
+    },
+    "functions": {
+      "match": "\\b(glob|existiert|umgebung|ersetze|basisname)(?=\\()",
+      "name": "support.function.builtin.machen"
+    }
+  }
+}

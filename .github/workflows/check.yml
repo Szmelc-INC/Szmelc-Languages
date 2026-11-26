@@ -1,0 +1,36 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Registry, generated files and grammar tokenization
+        run: npm run check
+      - name: file(1) magic detects every signed sample
+        run: |
+          set -e
+          sudo apt-get install -y -qq file >/dev/null
+          for f in "samples/Vibe-C/hello.vc" "samples/Szajs Script/hello.szajs" "samples/Szmelc.inc/common.inc" \
+                   "samples/Markdebil/README.debil" "samples/Machen/build.machen" "samples/R3000/fuzz.r3000"; do
+            out=$(file -b -m integrations/magic/szmelc.magic "$f")
+            echo "$f: $out"
+            case "$out" in *Vibe-C*|*"Szajs Script"*|*Szmelc.inc*|*Markdebil*|*Machen*|*R3000*) ;; *) exit 1 ;; esac
+          done
+      - name: shared-mime-info XML is valid
+        run: |
+          sudo apt-get install -y -qq libxml2-utils >/dev/null
+          xmllint --noout integrations/mime/szmelc-languages.xml
