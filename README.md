@@ -39,9 +39,12 @@ The colored language bar on github.com comes from [github/linguist](https://gith
 
 1. **Ready now:** [Szmelc-INC/linguist](https://github.com/Szmelc-INC/linguist) is a Linguist fork that knows all six languages: definitions, colors, `.inc` heuristic, samples and grammars. It passes the Linguist test suite. Use it to compute language stats locally or in CI:
    ```sh
-   gem install specific_install && gem specific_install -l https://github.com/Szmelc-INC/linguist
-   github-linguist --breakdown .
+   git clone --branch main https://github.com/Szmelc-INC/linguist ~/.local/share/szmelc-linguist
+   cd ~/.local/share/szmelc-linguist && bundle config set --local path vendor/bundle
+   bundle install && bundle exec rake compile samples
+   bundle exec bin/github-linguist --breakdown /path/to/repo   # or a single file
    ```
+   Example: `bin/github-linguist samples/Szmelc.inc/common.inc` prints `language: Szmelc.inc`, and a PHP `.inc` file is still PHP.
 2. **Interim on github.com:** copy [`integrations/gitattributes/interim.gitattributes`](integrations/gitattributes/interim.gitattributes) into a repo's `.gitattributes`. Files then count as the nearest existing language (Vibe-C → C, Machen → Makefile, …). `linguist-language` can only name languages that Linguist already ships.
 3. **Upstream:** when there are enough files in the wild, open a PR from the fork to `github/linguist`. Ready-made snippets are in [`linguist/`](linguist).
 
