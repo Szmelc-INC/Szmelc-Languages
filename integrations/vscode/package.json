@@ -1,0 +1,149 @@
+{
+  "name": "szmelc-languages",
+  "displayName": "Szmelc Languages",
+  "description": "Syntax highlighting for Vibe-C, Szajs Script, Szmelc.inc, Markdebil, Machen and R3000 (Rozkurwator 3000).",
+  "version": "1.0.0",
+  "publisher": "szmelc-inc",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Szmelc-INC/Szmelc-Languages"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "machen",
+        "aliases": [
+          "Machen",
+          "machenfile"
+        ],
+        "extensions": [
+          ".machen",
+          ".mach"
+        ],
+        "filenames": [
+          "Machendatei",
+          "Machenfile",
+          "machenfile"
+        ],
+        "firstLine": "^#!\\s*machen\\b",
+        "configuration": "./languages/machen.json"
+      },
+      {
+        "id": "markdebil",
+        "aliases": [
+          "Markdebil",
+          "debil"
+        ],
+        "extensions": [
+          ".debil",
+          ".dbl",
+          ".mdbl"
+        ],
+        "firstLine": "^\\+\\+\\+\\s*markdebil\\b",
+        "configuration": "./languages/markdebil.json"
+      },
+      {
+        "id": "r3000",
+        "aliases": [
+          "R3000",
+          "r3k",
+          "rozkurwator",
+          "rozkurwator-3000"
+        ],
+        "extensions": [
+          ".r3k",
+          ".r3000",
+          ".rzk"
+        ],
+        "firstLine": "^;;\\s*R3000\\b",
+        "configuration": "./languages/r3000.json"
+      },
+      {
+        "id": "szajs-script",
+        "aliases": [
+          "Szajs Script",
+          "szajs"
+        ],
+        "extensions": [
+          ".szajs",
+          ".sx"
+        ],
+        "firstLine": "^#!.*\\bszajs\\b",
+        "configuration": "./languages/szajs-script.json"
+      },
+      {
+        "id": "szmelc-inc",
+        "aliases": [
+          "Szmelc.inc",
+          "szmelc",
+          "szmelc-inc",
+          "sernik"
+        ],
+        "extensions": [
+          ".szmelc",
+          ".sernik"
+        ],
+        "filenames": [
+          "Szmelc.inc",
+          "Szmelcfile",
+          "szmelc.inc"
+        ],
+        "firstLine": "^%szmelc\\.inc\\b",
+        "configuration": "./languages/szmelc-inc.json"
+      },
+      {
+        "id": "vibe-c",
+        "aliases": [
+          "Vibe-C",
+          "vibec"
+        ],
+        "extensions": [
+          ".vc",
+          ".vic",
+          ".vice"
+        ],
+        "firstLine": "^//!\\s*vibe-c\\b",
+        "configuration": "./languages/vibe-c.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "machen",
+        "scopeName": "source.machen",
+        "path": "./grammars/machen.tmLanguage.json"
+      },
+      {
+        "language": "markdebil",
+        "scopeName": "text.markdebil",
+        "path": "./grammars/markdebil.tmLanguage.json"
+      },
+      {
+        "language": "r3000",
+        "scopeName": "source.r3000",
+        "path": "./grammars/r3000.tmLanguage.json"
+      },
+      {
+        "language": "szajs-script",
+        "scopeName": "source.szajs",
+        "path": "./grammars/szajs-script.tmLanguage.json"
+      },
+      {
+        "language": "szmelc-inc",
+        "scopeName": "source.szmelc-inc",
+        "path": "./grammars/szmelc-inc.tmLanguage.json"
+      },
+      {
+        "language": "vibe-c",
+        "scopeName": "source.vibe-c",
+        "path": "./grammars/vibe-c.tmLanguage.json"
+      }
+    ]
+  }
+}

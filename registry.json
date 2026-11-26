@@ -1,0 +1,263 @@
+{
+  "$comment": "Single source of truth for the Szmelc language family. tools/check.mjs validates every other file against it.",
+  "version": "1.0.0",
+  "languages": [
+    {
+      "name": "Machen",
+      "slug": "machen",
+      "type": "programming",
+      "color": "#1f8a8a",
+      "tagline": "German-flavoured build system: ziel, setze, mach.",
+      "extensions": [
+        ".machen",
+        ".mach"
+      ],
+      "filenames": [
+        "Machendatei",
+        "Machenfile",
+        "machenfile"
+      ],
+      "interpreters": [
+        "machen"
+      ],
+      "aliases": [
+        "machenfile"
+      ],
+      "scope": "source.machen",
+      "ace_mode": "makefile",
+      "mime": "text/x-machen",
+      "signature": "^#!\\s*machen\\b",
+      "interim": "Makefile",
+      "comment": "#",
+      "keywords": [
+        "ziel",
+        "setze",
+        "mach",
+        "sag",
+        "fehler",
+        "wenn",
+        "sonst",
+        "ende",
+        "fuer",
+        "in",
+        "importiere",
+        "standard"
+      ],
+      "constants": []
+    },
+    {
+      "name": "Markdebil",
+      "slug": "markdebil",
+      "type": "prose",
+      "color": "#c0c0c0",
+      "tagline": "Markdown for people who shout: !!!SHOUTS!!!, >:( rants, ?? questions.",
+      "extensions": [
+        ".debil",
+        ".dbl",
+        ".mdbl"
+      ],
+      "filenames": [],
+      "interpreters": [],
+      "aliases": [
+        "debil"
+      ],
+      "scope": "text.markdebil",
+      "ace_mode": "markdown",
+      "wrap": true,
+      "mime": "text/x-markdebil",
+      "signature": "^\\+\\+\\+\\s*markdebil\\b",
+      "interim": "Markdown",
+      "comment": "%%",
+      "keywords": [],
+      "constants": []
+    },
+    {
+      "name": "R3000",
+      "slug": "r3000",
+      "type": "programming",
+      "color": "#b83a3a",
+      "tagline": "Rozkurwator 3000: a pipeline language for mangling, fuzzing and wrecking data.",
+      "extensions": [
+        ".r3k",
+        ".r3000",
+        ".rzk"
+      ],
+      "filenames": [],
+      "interpreters": [
+        "r3k",
+        "rozkurwator"
+      ],
+      "aliases": [
+        "r3k",
+        "rozkurwator",
+        "rozkurwator-3000"
+      ],
+      "scope": "source.r3000",
+      "ace_mode": "text",
+      "mime": "text/x-r3000",
+      "signature": "^;;\\s*R3000\\b",
+      "interim": "Clojure",
+      "comment": ";",
+      "keywords": [
+        "moc",
+        "tryb",
+        "def",
+        "petla",
+        "od",
+        "do",
+        "jesli",
+        "inaczej",
+        "zwroc",
+        "rozwal",
+        "tnij",
+        "mieszaj",
+        "zgniec",
+        "wypluj",
+        "wypisz",
+        "odwroc",
+        "powiel",
+        "filtruj",
+        "mapuj",
+        "los"
+      ],
+      "constants": [
+        "prawda",
+        "falsz",
+        "nic"
+      ]
+    },
+    {
+      "name": "Szajs Script",
+      "slug": "szajs-script",
+      "type": "programming",
+      "color": "#7a5c2e",
+      "tagline": "Scripting with Polish keywords: niech, robota, jeśli, dopóki, daj.",
+      "extensions": [
+        ".szajs",
+        ".sx"
+      ],
+      "filenames": [],
+      "interpreters": [
+        "szajs"
+      ],
+      "aliases": [
+        "szajs"
+      ],
+      "scope": "source.szajs",
+      "ace_mode": "text",
+      "mime": "text/x-szajs",
+      "signature": "^#!.*\\bszajs\\b",
+      "interim": "Ruby",
+      "comment": "#",
+      "keywords": [
+        "niech",
+        "stala",
+        "stała",
+        "robota",
+        "daj",
+        "jesli",
+        "jeśli",
+        "albo",
+        "dopoki",
+        "dopóki",
+        "dla",
+        "w",
+        "koniec",
+        "przerwij",
+        "dalej",
+        "sprobuj",
+        "spróbuj",
+        "zlap",
+        "złap",
+        "wywal",
+        "i",
+        "lub",
+        "nie"
+      ],
+      "constants": [
+        "prawda",
+        "falsz",
+        "fałsz",
+        "nic"
+      ]
+    },
+    {
+      "name": "Szmelc.inc",
+      "slug": "szmelc-inc",
+      "type": "data",
+      "color": "#105c5c",
+      "tagline": "The incorporated manifest: corp metadata, sections, includes and Sernik receipts.",
+      "extensions": [
+        ".szmelc",
+        ".inc",
+        ".sernik"
+      ],
+      "filenames": [
+        "Szmelc.inc",
+        "Szmelcfile",
+        "szmelc.inc"
+      ],
+      "interpreters": [],
+      "aliases": [
+        "szmelc",
+        "szmelc-inc",
+        "sernik"
+      ],
+      "scope": "source.szmelc-inc",
+      "ace_mode": "ini",
+      "mime": "application/x-szmelc-inc",
+      "signature": "^%szmelc\\.inc\\b",
+      "interim": "INI",
+      "comment": ";;",
+      "keywords": [],
+      "constants": [
+        "tak",
+        "nie",
+        "yes",
+        "no",
+        "true",
+        "false",
+        "nic"
+      ]
+    },
+    {
+      "name": "Vibe-C",
+      "slug": "vibe-c",
+      "type": "programming",
+      "color": "#7fffd4",
+      "tagline": "C, but vibe-coded: chill, yolo, nocap, send, and prompt blocks the compiler can read.",
+      "extensions": [
+        ".vc",
+        ".vic",
+        ".vice"
+      ],
+      "filenames": [],
+      "interpreters": [],
+      "aliases": [
+        "vibec"
+      ],
+      "scope": "source.vibe-c",
+      "ace_mode": "c_cpp",
+      "mime": "text/x-vibe-c",
+      "signature": "^//!\\s*vibe-c\\b",
+      "interim": "C",
+      "comment": "//",
+      "keywords": [
+        "vibe",
+        "chill",
+        "sus",
+        "lowkey",
+        "highkey",
+        "yolo",
+        "nocap",
+        "vibecheck",
+        "bruh",
+        "send"
+      ],
+      "constants": [
+        "fr",
+        "cap"
+      ]
+    }
+  ]
+}

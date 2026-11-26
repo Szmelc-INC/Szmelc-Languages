@@ -1,0 +1,103 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Markdebil",
+  "scopeName": "text.markdebil",
+  "fileTypes": ["debil", "dbl", "mdbl"],
+  "patterns": [
+    { "include": "#frontmatter" },
+    { "include": "#comment" },
+    { "include": "#heading" },
+    { "include": "#rant" },
+    { "include": "#question" },
+    { "include": "#quote" },
+    { "include": "#fenced" },
+    { "include": "#list" },
+    { "include": "#inline" }
+  ],
+  "repository": {
+    "frontmatter": {
+      "begin": "\\A(\\+\\+\\+)\\s*(markdebil)\\s*$",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.frontmatter.markdebil" },
+        "2": { "name": "keyword.other.signature.markdebil" }
+      },
+      "end": "^(\\+\\+\\+)\\s*$",
+      "endCaptures": { "1": { "name": "punctuation.definition.frontmatter.markdebil" } },
+      "name": "meta.frontmatter.markdebil",
+      "patterns": [
+        {
+          "match": "^\\s*([\\p{L}_][\\p{L}\\p{N}_-]*)(:)\\s*(.*)$",
+          "captures": {
+            "1": { "name": "variable.other.key.markdebil" },
+            "2": { "name": "punctuation.separator.key-value.markdebil" },
+            "3": { "name": "string.unquoted.markdebil" }
+          }
+        }
+      ]
+    },
+    "comment": {
+      "begin": "%%",
+      "end": "%%",
+      "name": "comment.block.markdebil"
+    },
+    "heading": {
+      "match": "^(#{1,6})\\s+(.*)$",
+      "captures": {
+        "1": { "name": "punctuation.definition.heading.markdebil" },
+        "2": { "name": "entity.name.section.markdebil" }
+      },
+      "name": "markup.heading.markdebil"
+    },
+    "rant": {
+      "match": "^(>:\\()\\s*(.*)$",
+      "captures": {
+        "1": { "name": "punctuation.definition.rant.markdebil" },
+        "2": { "name": "markup.quote.rant.markdebil" }
+      },
+      "name": "meta.rant.markdebil"
+    },
+    "question": {
+      "match": "^(\\?\\?)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "punctuation.definition.question.markdebil" },
+        "2": { "name": "markup.italic.question.markdebil" }
+      },
+      "name": "meta.question.markdebil"
+    },
+    "quote": {
+      "match": "^(>)(?!:\\()\\s?(.*)$",
+      "captures": {
+        "1": { "name": "punctuation.definition.quote.markdebil" },
+        "2": { "name": "markup.quote.markdebil" }
+      }
+    },
+    "fenced": {
+      "begin": "^(```)\\s*([\\w+-]*)\\s*$",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.raw.markdebil" },
+        "2": { "name": "fenced_code.block.language.markdebil" }
+      },
+      "end": "^(```)\\s*$",
+      "endCaptures": { "1": { "name": "punctuation.definition.raw.markdebil" } },
+      "contentName": "markup.raw.block.markdebil"
+    },
+    "list": {
+      "match": "^\\s*([-*+]|\\d+[.)])\\s",
+      "captures": { "1": { "name": "punctuation.definition.list.markdebil" } }
+    },
+    "inline": {
+      "patterns": [
+        { "match": "!!!.+?!!!", "name": "markup.bold.shout.markdebil" },
+        { "match": "\\*\\*.+?\\*\\*", "name": "markup.bold.markdebil" },
+        { "match": "(?<![\\w*])\\*[^*\\s][^*]*\\*(?![\\w*])", "name": "markup.italic.markdebil" },
+        { "match": "==.+?==", "name": "markup.highlight.markdebil" },
+        { "match": "~~.+?~~", "name": "markup.strikethrough.markdebil" },
+        { "match": "\\|\\|.+?\\|\\|", "name": "markup.other.spoiler.markdebil" },
+        { "match": "`[^`]+`", "name": "markup.inline.raw.markdebil" },
+        { "match": "\\[\\[[^\\]]+\\]\\]", "name": "markup.underline.link.wiki.markdebil" },
+        { "match": "\\[[^\\]]+\\]\\([^)]+\\)", "name": "markup.underline.link.markdebil" },
+        { "match": ":[a-z0-9_+-]+:", "name": "constant.character.emoji.markdebil" }
+      ]
+    }
+  }
+}

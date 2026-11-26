@@ -1,0 +1,79 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Szmelc.inc",
+  "scopeName": "source.szmelc-inc",
+  "fileTypes": ["szmelc", "inc", "sernik", "Szmelcfile"],
+  "firstLineMatch": "^%szmelc\\.inc\\b",
+  "patterns": [
+    { "include": "#signature" },
+    { "include": "#comments" },
+    { "include": "#directive" },
+    { "include": "#section" },
+    { "include": "#heredoc" },
+    { "include": "#pair" }
+  ],
+  "repository": {
+    "signature": {
+      "match": "^(%szmelc\\.inc)\\s+([0-9][0-9.]*)(?:\\s+(manifest|include|sernik))?",
+      "captures": {
+        "1": { "name": "keyword.other.signature.szmelc-inc" },
+        "2": { "name": "constant.numeric.version.szmelc-inc" },
+        "3": { "name": "entity.name.type.profile.szmelc-inc" }
+      },
+      "name": "meta.signature.szmelc-inc"
+    },
+    "comments": {
+      "match": ";;.*$",
+      "name": "comment.line.double-semicolon.szmelc-inc"
+    },
+    "directive": {
+      "begin": "^\\s*(@[A-Za-z_][\\w-]*)",
+      "beginCaptures": { "1": { "name": "keyword.control.directive.szmelc-inc" } },
+      "end": "$",
+      "name": "meta.directive.szmelc-inc",
+      "patterns": [ { "include": "#comments" }, { "include": "#value" } ]
+    },
+    "section": {
+      "match": "^\\s*(\\[)([A-Za-z_][\\w.-]*)(\\])",
+      "captures": {
+        "1": { "name": "punctuation.definition.section.begin.szmelc-inc" },
+        "2": { "name": "entity.name.section.szmelc-inc" },
+        "3": { "name": "punctuation.definition.section.end.szmelc-inc" }
+      },
+      "name": "meta.section.szmelc-inc"
+    },
+    "heredoc": {
+      "begin": "^\\s*([A-Za-z_][\\w.-]*)\\s*(=)\\s*(<<<)\\s*$",
+      "beginCaptures": {
+        "1": { "name": "variable.other.key.szmelc-inc" },
+        "2": { "name": "punctuation.separator.key-value.szmelc-inc" },
+        "3": { "name": "punctuation.definition.string.begin.szmelc-inc" }
+      },
+      "end": "^\\s*(>>>)",
+      "endCaptures": { "1": { "name": "punctuation.definition.string.end.szmelc-inc" } },
+      "contentName": "string.unquoted.heredoc.szmelc-inc"
+    },
+    "pair": {
+      "begin": "^\\s*([A-Za-z_][\\w.-]*)\\s*(=)",
+      "beginCaptures": {
+        "1": { "name": "variable.other.key.szmelc-inc" },
+        "2": { "name": "punctuation.separator.key-value.szmelc-inc" }
+      },
+      "end": "$",
+      "name": "meta.pair.szmelc-inc",
+      "patterns": [ { "include": "#comments" }, { "include": "#value" } ]
+    },
+    "value": {
+      "patterns": [
+        { "begin": "\"", "end": "\"", "name": "string.quoted.double.szmelc-inc", "patterns": [ { "match": "\\\\.", "name": "constant.character.escape.szmelc-inc" } ] },
+        { "match": "\\b(tak|nie|yes|no|true|false|nic)\\b", "name": "constant.language.boolean.szmelc-inc" },
+        { "match": "\\b\\d{4}-\\d{2}-\\d{2}(?:T[\\d:]+(?:Z|[+-]\\d{2}:\\d{2})?)?\\b", "name": "constant.other.date.szmelc-inc" },
+        { "match": "\\b\\d+(?:\\.\\d+)*\\b", "name": "constant.numeric.szmelc-inc" },
+        { "match": "&[A-Za-z_][\\w.-]*", "name": "variable.other.reference.szmelc-inc" },
+        { "match": "\\$[A-Za-z_]\\w*", "name": "variable.other.environment.szmelc-inc" },
+        { "match": "[\\[\\],]", "name": "punctuation.separator.list.szmelc-inc" },
+        { "match": "[A-Za-z_][\\w.-]*", "name": "string.unquoted.szmelc-inc" }
+      ]
+    }
+  }
+}

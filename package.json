@@ -1,0 +1,16 @@
+{
+  "name": "szmelc-languages",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Language definitions, grammars and integrations for the Szmelc language family",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "node tools/build.mjs --check && node tools/test-grammars.mjs"
+  },
+  "devDependencies": {
+    "vscode-oniguruma": "2.0.1",
+    "vscode-textmate": "9.2.0"
+  }
+}
